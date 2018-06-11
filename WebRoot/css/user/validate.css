@@ -1,0 +1,42 @@
+@charset "utf-8";
+label{
+	float:left;
+}
+label.error {
+	background:url(images/validate/warn.gif) 6px 2px no-repeat;
+	padding-left:20px;
+	padding-right:5px;
+	color:#d31717;
+	background-color:#fef6f3;
+	font-size:12px;
+	height:auto;
+	line-height:18px;
+	display:inline-block;
+	border:1px solid #bd2020;
+	margin-right: 20px;
+}
+input.error {
+	border:1px solid #C30;
+	background:#fbec87;
+}
+select.error {
+	border:1px solid #C30;
+	background:#fbec87;
+}
+textarea.error {
+	border:1px solid #C30;
+	background:#fbec87;
+}
+
+.addTab  input.error {
+	border:1px solid #C30;
+	background:#fbec87;
+}
+.addTab select.error {
+	border:1px solid #C30;
+	background:#fbec87;
+}
+.addTab textarea.error {
+	border:1px solid #C30;
+	background:#fbec87;
+}

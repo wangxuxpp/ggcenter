@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+	<!-- ①：对atomic,modular包及子包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能
+	    自动装载bean(Classpath扫描)
+	    多个包可以用逗号隔开
+	    @Service bean的创建在applicationContext.xml文件中创建 ,
+	-->
+	<context:component-scan base-package="projectInitial.cfg.context,base,atomic"/>	
+	<context:component-scan base-package="business,movable" use-default-filters="false"> 
+    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>	
+	
+		<!-- 配置注入式事务处理<tx:annotation-driven transaction-manager="txManager"/> -->
+	<aop:config proxy-target-class="true">
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* modular..service..*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* movable..service..*.*(..))"/>
+	</aop:config>
+	
+	<!-- 配置自动事务处理 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+		<!-- hsj 2010/11/03  propagation="NOT_SUPPORTED" 必须有 否则所有方法都将起事务
+    		<tx:method name="is*" read-only="true" propagation="NOT_SUPPORTED"/>
+    		<tx:method name="*Check" read-only="true" propagation="NOT_SUPPORTED"/> -->
+    		<tx:method name="list*" read-only="true" propagation="NOT_SUPPORTED"/>
+    		<tx:method name="get" read-only="true" propagation="NOT_SUPPORTED"/>
+    		<tx:method name="listrefreshMemberProdStatus" read-only="true" propagation="NOT_SUPPORTED"/>
+    		<tx:method name="listrefreshMemberStockStatus" read-only="true" propagation="NOT_SUPPORTED"/>
+    		<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+</beans>

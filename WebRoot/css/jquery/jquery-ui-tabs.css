@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+
+/* TR overrides */
+.ui-spinner .ui-icon-triangle-1-s {
+	/* need to fix icons sprite */
+	background-position: -65px -16px;
+}
+.ui-tabs {
+	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+	padding: .2em;
+}
+.ui-tabs .ui-tabs-nav {
+	margin: 0;
+	padding: .2em .2em 0;
+}
+.ui-tabs .ui-tabs-nav #tabs_ul_title{
+	height: 40px;
+}
+.ui-tabs .ui-tabs-nav #tabs_ul_title li {
+	float: left;
+	position: relative;
+	margin: 1px 2px 0 0;
+	border-bottom-width: 0;
+	padding: 0;
+	width:109px;
+	table-layout: fixed;
+	white-space: nowrap;
+}
+.ui-tabs .ui-tabs-nav #tabs_ul_title li a {
+	-o-text-overflow:ellipsis;
+    text-overflow: ellipsis; 
+    -moz-binding: url('ellipsis.xml#ellipsis');
+    white-space: nowrap;
+    word-break:keep-all;
+    width: 75%;
+    overflow: hidden; 
+    border: 1px solid red;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+	float: left;
+	padding: .5em 1em;
+	text-decoration: none;
+}
+.ui-tabs .ui-tabs-nav #tabs_ul_title li.ui-tabs-active {
+	margin-bottom: -1px;
+	padding-bottom: 1px;
+}
+.ui-tabs .ui-tabs-nav #tabs_ul_title li.ui-tabs-active .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav #tabs_ul_title li.ui-state-disabled .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav #tabs_ul_title li.ui-tabs-loading .ui-tabs-anchor {
+	cursor: text;
+}
+.ui-tabs-collapsible .ui-tabs-nav #tabs_ul_title li.ui-tabs-active .ui-tabs-anchor {
+	cursor: pointer;
+}
+.ui-tabs .ui-tabs-panel {
+	display: block;
+	border-width: 0;
+	padding: 1em 1.4em;
+	background: none;
+}
+.ui-tooltip {
+	padding: 8px;
+	position: absolute;
+	z-index: 9999;
+	max-width: 300px;
+	-webkit-box-shadow: 0 0 5px #aaa;
+	box-shadow: 0 0 5px #aaa;
+}
+body .ui-tooltip {
+	border-width: 2px;
+}
